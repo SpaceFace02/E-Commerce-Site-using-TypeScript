@@ -68,7 +68,7 @@ const App = () => {
     setCartItems((prev) =>
       prev.reduce((accumulator, item) => {
         if (item.id === itemId) {
-          //   Remove this item from the array, return the previous accumulated values, except that current value.
+          //   Remove this item from the array, return the previous accumulated values, except that current value. Skip the current item.
           if (item.amount === 1) return [...accumulator];
           //   Else, return the previous accumulated values, along with the spread out items with the amount decreased by 1.
           return [...accumulator, { ...item, amount: item.amount - 1 }];
@@ -79,6 +79,7 @@ const App = () => {
       }, [] as CartItemType[])
     );
   };
+  //   In the above function, we have to specify the starting value of the accumulator as an empty array.
 
   if (isLoading) return <LinearProgress />;
 
